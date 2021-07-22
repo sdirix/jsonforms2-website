@@ -10,6 +10,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'eclipsesource',
   projectName: 'jsonforms',
+  trailingSlash: false,
   scripts: [
     {
       src: 'https://static.cloudflareinsights.com/beacon.min.js',
