@@ -1,66 +1,36 @@
-const path = require('path');
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'JSON Forms',
-  tagline: 'More forms. Less code.',
-  url: 'https://jsonforms.io',
+  title: 'My Site',
+  tagline: 'Dinosaurs are cool',
+  url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'eclipsesource',
-  projectName: 'jsonforms',
-  trailingSlash: false,
-  scripts: [
-    {
-      src: 'https://static.cloudflareinsights.com/beacon.min.js',
-      defer: true,
-      'data-cf-beacon':
-        '{&quot;token&quot;: &quot;b2ec7b485fc04039bf1a9fbd51005477&quot;}',
-    },
-  ],
+  organizationName: 'facebook', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
+  trailingSlash: 'false',
   themeConfig: {
-    colorMode: {
-      defaultMode: 'light',
-      disableSwitch: true,
-    },
     navbar: {
-      title: 'JSON Forms',
-      style: 'dark',
+      title: 'My Site',
       logo: {
-        alt: 'JSON Forms Logo',
+        alt: 'My Site Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          to: 'examples/basic',
-          label: 'Examples',
-          activeBasePath: 'examples',
+          type: 'doc',
+          docId: 'intro',
           position: 'left',
+          label: 'Tutorial',
         },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          to: 'docs',
-          label: 'Docs',
-          position: 'left',
-        },
-        {
-          to: 'faq',
-          label: 'FAQ',
-          position: 'left',
-        },
-        {
-          to: 'news',
-          label: 'News',
-          position: 'left',
-        },
-        {
-          to: 'support',
-          label: 'Professional Support',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/eclipsesource/jsonforms',
-          className: 'header-github-link',
+          href: 'https://github.com/facebook/docusaurus',
+          label: 'GitHub',
           position: 'right',
         },
       ],
@@ -69,15 +39,28 @@ module.exports = {
       style: 'dark',
       links: [
         {
+          title: 'Docs',
+          items: [
+            {
+              label: 'Tutorial',
+              to: '/docs/intro',
+            },
+          ],
+        },
+        {
           title: 'Community',
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/eclipsesource/jsonforms',
+              label: 'Stack Overflow',
+              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
             },
             {
-              label: 'Discourse',
-              href: 'https://jsonforms.discourse.group',
+              label: 'Discord',
+              href: 'https://discordapp.com/invite/docusaurus',
+            },
+            {
+              label: 'Twitter',
+              href: 'https://twitter.com/docusaurus',
             },
           ],
         },
@@ -85,155 +68,46 @@ module.exports = {
           title: 'More',
           items: [
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/JSONForms',
+              label: 'Blog',
+              to: '/blog',
             },
             {
-              label: 'EclipseSource Blog',
-              href: 'https://eclipsesource.com/blogs/tag/jsonforms',
-            },
-          ],
-        },
-        {
-          title: 'Legal',
-          items: [
-            {
-              label: 'Imprint',
-              href: 'https://eclipsesource.com/imprint',
-            },
-            {
-              label: 'Privacy Policy',
-              href: 'https://www.iubenda.com/privacy-policy/83048734',
+              label: 'GitHub',
+              href: 'https://github.com/facebook/docusaurus',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} EclipseSource`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
     },
   },
   presets: [
     [
       '@docusaurus/preset-classic',
       {
-        theme: {
-          customCss: require.resolve('./src/css/global.scss'),
+        docs: {
+          sidebarPath: require.resolve('./sidebars.js'),
+          // Please change this to your repo.
+          editUrl:
+            'https://github.com/facebook/docusaurus/edit/master/website/',
         },
-        docs: false,
-        blog: false,
-        pages: false,
+        blog: {
+          showReadingTime: true,
+          // Please change this to your repo.
+          editUrl:
+            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+        },
+        theme: {
+          customCss: require.resolve('./src/css/custom.css'),
+        },
       },
     ],
   ],
   plugins: [
-    path.resolve(__dirname, './src/custom-webpack'),
-    'docusaurus-plugin-sass',
-    'docusaurus2-dotenv',
-    [
-      '@docusaurus/plugin-content-pages',
-      {
-        path: 'content/pages',
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'docs',
-        path: 'content/docs',
-        routeBasePath: 'docs',
-        sidebarPath: require.resolve('./src/sidebars/docs.js'),
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'examples',
-        path: 'content/examples',
-        routeBasePath: 'examples',
-        sidebarPath: require.resolve('./src/sidebars/examples.js'),
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'faq',
-        path: 'content/faq',
-        routeBasePath: 'faq',
-        sidebarPath: require.resolve('./src/sidebars/faq.js'),
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        id: 'news',
-        path: 'content/news',
-        routeBasePath: 'news',
-        blogSidebarTitle: 'Latest News',
-        showReadingTime: false,
-        blogSidebarCount: 'ALL',
-      },
-    ],
-    [
-      '@docusaurus/plugin-client-redirects',
-      {
-        redirects: [
-          {
-            to: '/docs/tutorial',
-            from: '/docs/tutorial-typescript',
-          },
-          {
-            to: '/docs/integrations/angular',
-            from: '/docs/angular',
-          },
-          {
-            to: '/docs/integrations/react',
-            from: ['/docs/react', '/docs/integration'],
-          },
-          {
-            to: '/docs/deprecated/redux',
-            from: '/docs/redux',
-          },
-          {
-            to: '/docs/deprecated/store',
-            from: '/docs/store',
-          },
-          {
-            to: '/docs/deprecated/available-actions',
-            from: '/docs/available-actions',
-          },
-          {
-            to: '/docs/tutorial/custom-layouts',
-            from: '/docs/custom-layouts',
-          },
-          {
-            to: '/docs/tutorial/custom-renderers',
-            from: '/docs/custom-renderers',
-          },
-          {
-            to: '/docs/tutorial/multiple-forms',
-            from: '/docs/multiple-forms',
-          },
-          {
-            to: '/examples/basic',
-            from: '/examples/person',
-          },
-          {
-            to: '/examples/basic',
-            from: '/examples',
-          },
-          {
-            to: '/docs/api',
-            from: '/api',
-          },
-        ],
-      },
-    ],
-    [
-      '@easyops-cn/docusaurus-search-local',
-      {
-        hashed: true,
-        docsDir: "./content/docs",
-        blogDir: "./content/news"
-      },
-    ]
+    require.resolve('@cmfcmf/docusaurus-search-local')
   ],
 };
